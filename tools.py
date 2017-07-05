@@ -21,12 +21,14 @@ tf.app.flags.DEFINE_integer('max_layers', 3,
 tf.app.flags.DEFINE_string('later_set', '10 5 10',
                         """ set the number of layers """)
 
-####case#####
-
-if FLAGS.md == 'autoencoder':
-    ae = autoencodermodle(FLAGS.max_layers,FLAGS.train_dir)
-    ae.session()
-    ae.print_weight()
-    ae.print_biases()
-    
-sys.exit()
+####main#####
+def main():
+  if FLAGS.md == 'autoencoder':
+      ae = autoencodermodle(FLAGS.max_layers,FLAGS.train_dir)
+      ae.session()
+      ae.print_weight()
+      ae.print_biases()
+      sys.exit()
+      
+if __name__ == "__main__":
+    main()
