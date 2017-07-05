@@ -52,9 +52,10 @@ class autoencodermodle(object):
         n_input = 15 # Q15 data input (img shape: 15)
         
         
-        # tf data input 
+        # tf data input placeholder
         X = tf.placeholder("float", [None, n_input])
-
+        
+        # random initial the weight and biases for two layers
         weights = {
             'encoder_h1': tf.Variable(tf.random_normal([n_input, n_hidden_1])),
             'encoder_h2': tf.Variable(tf.random_normal([n_hidden_1, n_hidden_2])),
@@ -97,10 +98,10 @@ class autoencodermodle(object):
 
         # Prediction
         y_pred = decoder_op
-        # Targets (Labels) are the input data.
+        # recover to the input data.
         y_true = X
     
-        # Define loss and optimizer, minimize the squared error
+        # Define cost and optimizer, minimize the squared error
         cost = tf.reduce_mean(tf.pow(y_true - y_pred, 2))
         optimizer = tf.train.RMSPropOptimizer(learning_rate).minimize(cost)
     
